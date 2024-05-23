@@ -65,10 +65,34 @@ namespace FarmFeeding
             }
         }
 
+        static string CheckName()
+        {
+            while (true)
+            {
+                // get name
+                Console.WriteLine("Enter your name:\n");
+                string name = Console.ReadLine();
+
+                if (!name.Equals(""))
+                {
+                    // convert name to capitalized name
+                    name = name[0].ToString().ToUpper() + name.Substring(1);
+
+                    return name;
+                }
+                Console.WriteLine("Error: You must enter your name!");
+            }
+        }
+
 
         static void FarmFeeding()
         {
             // Decide which species is used
+
+            string name = CheckName();
+
+            Console.WriteLine($"Is your name Farmer {name}? Are you sure, Press Enter if so.");
+            Console.ReadLine();
 
             int species = CheckSpecies("Choose a species:\n" +
                "1. Romney\n" +
