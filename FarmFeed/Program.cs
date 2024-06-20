@@ -7,10 +7,13 @@ namespace FarmFeeding
     class Program
     {
         // Global variables
-        List<string> species = new List<string>() { "Romeney", "KuneKune", "Angus", "Leghorn" };
-        List<string> food = new List<string>() { "300g", "2500g", "10886g", "125g" };
+        List<string> species = new List<string>() { "sheep", "pig", "cow", "chicken" };
+        List<string> Sheep = new List<string>() { "Romney","Hampshire","Dorset", "Rambouillet" };
+        List<string> pig = new List<string>() { "Kunekune", "Hampshire", "Duroc", "Berkshire" };
+        List<string> cow = new List<string>() { "Holstein Friedsian", "Hereford", "Simmental", "Limosusin" };
+        List<string> chicken = new List<string>() { "Silkie", "Brahma", "Ayam", "ISA Brown" };
         static int Flag = 0;
-
+        
         // Methods and/or function
 
         // Check to see if an interger enter by a user is within range
@@ -39,7 +42,7 @@ namespace FarmFeeding
                 }
             }
         }
-        static int CheckFood(string question, int min, int max)
+        static int CheckSheep(string question, int min, int max)
         {
             Console.WriteLine(question);
 
@@ -47,15 +50,13 @@ namespace FarmFeeding
             {
                 try
                 {
-
                     int userInt = Convert.ToInt32(Console.ReadLine());
 
-                    if (userInt >= min && userInt <= max)
+                    if(userInt >= min && userInt <= max)
                     {
                         return userInt;
                     }
                     Console.WriteLine($"Error: Please enter a number between {min} and {max}\n");
-
                 }
 
                 catch
@@ -64,7 +65,75 @@ namespace FarmFeeding
                 }
             }
         }
+        static int CheckPig(string question, int min, int max)
+        {
+            Console.WriteLine(question);
 
+            while (true)
+            {
+                try
+                {
+                    int userInt = Convert.ToInt32(Console.ReadLine());
+
+                    if (userInt >= min && userInt <= max)
+                    {
+                        return userInt;
+                    }
+                    Console.WriteLine($"Error: Please enter a number between {min} and {max}\n");
+                }
+
+                catch
+                {
+                    Console.WriteLine($"Error: Please enter a number between {min} and {max}\n");
+                }
+            }
+        }
+        static int CheckCow(string question, int min, int max)
+        {
+            Console.WriteLine(question);
+
+            while (true)
+            {
+                try
+                {
+                    int userInt = Convert.ToInt32(Console.ReadLine());
+
+                    if (userInt >= min && userInt <= max)
+                    {
+                        return userInt;
+                    }
+                    Console.WriteLine($"Error: Please enter a number between {min} and {max}\n");
+                }
+
+                catch
+                {
+                    Console.WriteLine($"Error: Please enter a number between {min} and {max}\n");
+                }
+            }
+        }
+        static int CheckChicken(string question, int min, int max)
+        {
+            Console.WriteLine(question);
+
+            while (true)
+            {
+                try
+                {
+                    int userInt = Convert.ToInt32(Console.ReadLine());
+
+                    if (userInt >= min && userInt <= max)
+                    {
+                        return userInt;
+                    }
+                    Console.WriteLine($"Error: Please enter a number between {min} and {max}\n");
+                }
+
+                catch
+                {
+                    Console.WriteLine($"Error: Please enter a number between {min} and {max}\n");
+                }
+            }
+        }
         static string CheckName()
         {
             while (true)
@@ -84,21 +153,19 @@ namespace FarmFeeding
             }
         }
 
-
         static void FarmFeeding()
         {
-            // Decide which species is used
+            // Write your Farmer name
 
             string name = CheckName();
 
-            Console.WriteLine($"Is your name Farmer {name}? Are you sure, Press Enter if so.");
-            Console.ReadLine();
+            // Decide which species is used
 
             int species = CheckSpecies("Choose a species:\n" +
-               "1. Romney\n" +
-               "2. KuneKune\n" +
-               "3. Angus\n" +
-               "4. Leghorn\n" +
+               "1. Sheep\n" +
+               "2. Pig\n" +
+               "3. Cow\n" +
+               "4. Chicken\n" +
                "5. Quit\n", 1, 5);
 
             if (species == 5)
@@ -106,18 +173,53 @@ namespace FarmFeeding
                 Flag = 5;
             }
 
-            Console.WriteLine($"You chose {species}. Are you sure to continue, press Enter.");
-            Console.ReadLine();
-            Console.Clear();
 
-            int food = CheckFood("Choose your amount of food:\n" +
-                "1. 300g\n" +
-                "2. 2500g\n" +
-                "3. 10886g\n" +
-                "4. 125g\n", 1, 4);
+            int sheep = CheckSheep("Choose your breed of sheep:\n" +
+                "1. Romney\n" +
+                "2. Hampshire\n" +
+                "3. Dorset\n" +
+                "4. Rambouillet\n" +
+                "5. Quit", 1, 5);
 
-            Console.WriteLine($"Species breed {species} eats {food} amount of food.");
+            if (sheep == 5)
+            {
+                Flag = 5;
+            }
 
+            int pig = CheckPig("Chooose your breed of pig:\n" +
+                "1. Kunekune\n" +
+                "2. Hampshire\n" +
+                "3. Duroc\n" +
+                "4. Berkshire\n" +
+                "5. Quit", 1, 5);
+
+            if (pig == 5)
+            {
+                Flag = 5;
+            }
+
+            int cow = CheckCow("Choose your breed of cow:\n" +
+                "1. Holstein Friedsian\n" +
+                "2. Hereford\n" +
+                "3. Simmental\n" +
+                "4. Limosusin\n" +
+                "5. Quit", 1, 5);
+
+            if (cow == 5)
+            {
+                Flag = 5;
+            }
+
+            int chicken = CheckChicken("Choose your breed of chicken:\n" +
+                "1. Silkie\n" +
+                "2. Brahma\n" +
+                "3. Ayam\n" +
+                "4. ISA Brown\n" +
+                "5. Quit\n", 1, 5);
+            if (chicken == 5)
+            {
+                Flag = 5;
+            }
         }
 
         static void Main()
