@@ -7,12 +7,13 @@ namespace FarmFeeding
     class Program
     {
         // Global variables
-        List<string> species = new List<string>() { "sheep", "pig", "cow", "chicken" };
-        List<string> Sheep = new List<string>() { "Romney","Hampshire","Dorset", "Rambouillet" };
-        List<string> pig = new List<string>() { "Kunekune", "Hampshire", "Duroc", "Berkshire" };
-        List<string> cow = new List<string>() { "Holstein Friedsian", "Hereford", "Simmental", "Limosusin" };
-        List<string> chicken = new List<string>() { "Silkie", "Brahma", "Ayam", "ISA Brown" };
-        static int Flag = 0;
+        public static List<string> species = new List<string>() { "sheep", "pig", "cow", "chicken" };
+        public static List<string> Sheep = new List<string>() { "Romney","Hampshire","Dorset", "Rambouillet" };
+        public static List<string> pig = new List<string>() { "Kunekune", "Hampshire", "Duroc", "Berkshire" };
+        public static List<string> cow = new List<string>() { "Holstein Friedsian", "Hereford", "Simmental", "Limosusin" };
+        public static List<string> chicken = new List<string>() { "Silkie", "Brahma", "Ayam", "ISA Brown" };
+        public static int Flag = 0;
+        public static string chosen_species = "Nothing";
 
         // Methods and/or function
 
@@ -30,23 +31,26 @@ namespace FarmFeeding
 
                     if (userInt >= min && userInt <= max)
                     {
-                        if (userInt == 1)
+                        if (chosen_species != "Nothing")
                         {
-                            chosen_breed = CheckSpecies[userInt];
+                            if (chosen_species == "Sheep")
+                            {
+                                chosen_breed = Sheep[userInt - 1];
+                            }
+                            else if (chosen_species == "Pig")
+                            {
+                                chosen_breed = pig[userInt - 1];
+                            }
+                            else if (chosen_species == "Cow")
+                            {
+                                chosen_breed = cow[userInt - 1];
+                            }
+                            else if (chosen_species == "Chicken")
+                            {
+                                chosen_breed = chicken[userInt - 1];
+                            }
+                            Console.WriteLine($"Species: {chosen_species}\nBreed: {chosen_breed}");
                         }
-                        else if (userInt == 2)
-                        {
-                            chosen_breed = "Pig";
-                        }
-                        else if (userInt == 3)
-                        {
-                            chosen_breed = "Cow";
-                        }
-                        else if (userInt == 4)
-                        {
-                            chosen_breed = "Chicken";
-                        }
-                        Console.WriteLine($"Species: {chosen_species}\nBreed: ");
                     }
                     else
                     {
@@ -71,9 +75,28 @@ namespace FarmFeeding
 
                     if(userInt >= min && userInt <= max)
                     {
+                        if (userInt == 1)
+                        {
+                            chosen_species = "Sheep";
+                        } 
+                        else if (userInt == 2)
+                        {
+                            chosen_species = "Pig";
+                        }
+                        else if (userInt == 3)
+                        {
+                            chosen_species = "Cow";
+                        }
+                        else if (userInt == 4)
+                        {
+                            chosen_species = "Chicken";
+                        }
                         return userInt;
                     }
-                    Console.WriteLine($"Error: Please enter a number between {min} and {max}\n");
+                    else
+                    {
+                        Console.WriteLine($"Error: Please enter a number between {min} and {max}\n");
+                    }
                 }
 
                 catch
