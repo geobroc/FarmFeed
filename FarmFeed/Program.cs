@@ -14,6 +14,7 @@ namespace FarmFeeding
         public static List<string> chicken = new List<string>() { "Silkie", "Brahma", "Ayam", "ISA Brown" };
         public static int Flag = 0;
         public static string chosen_species = "Nothing";
+        public static string chosen_breed;
 
         // Methods and/or function
 
@@ -26,7 +27,6 @@ namespace FarmFeeding
             {
                 try
                 {
-                    string chosen_breed;
                     int userInt = Convert.ToInt32(Console.ReadLine());
 
                     if (userInt >= min && userInt <= max)
@@ -49,7 +49,14 @@ namespace FarmFeeding
                             {
                                 chosen_breed = chicken[userInt - 1];
                             }
-                            Console.WriteLine($"Species: {chosen_species}\nBreed: {chosen_breed}");
+                            Random random = new Random();
+                            string ID = "SBL0001#" + random.Next(01, 99);
+                            int daily_amount = 500;
+                            int total_amount = daily_amount * 7;
+                            float cost = (float)Math.Round(total_amount / 61.9, 2);
+                            Console.WriteLine($"Species: {chosen_species}\nBreed: {chosen_breed}\nID: {ID}\nDay 1: {daily_amount}g\nDay 2: {daily_amount}g\nDay 3: {daily_amount}g" +
+                                $"\nDay 4: {daily_amount}g\nDay 5: {daily_amount}g\nDay 6: {daily_amount}g\nDay 7: {daily_amount}g\n\nTotal Food Consumed: {total_amount}g\nCost: ${cost}");
+
                         }
                     }
                     else
@@ -97,75 +104,6 @@ namespace FarmFeeding
                     {
                         Console.WriteLine($"Error: Please enter a number between {min} and {max}\n");
                     }
-                }
-
-                catch
-                {
-                    Console.WriteLine($"Error: Please enter a number between {min} and {max}\n");
-                }
-            }
-        }
-        static int CheckPig(string question, int min, int max)
-        {
-            Console.WriteLine(question);
-
-            while (true)
-            {
-                try
-                {
-                    int userInt = Convert.ToInt32(Console.ReadLine());
-
-                    if (userInt >= min && userInt <= max)
-                    {
-                        return userInt;
-                    }
-                    Console.WriteLine($"Error: Please enter a number between {min} and {max}\n");
-                }
-
-                catch
-                {
-                    Console.WriteLine($"Error: Please enter a number between {min} and {max}\n");
-                }
-            }
-        }
-        static int CheckCow(string question, int min, int max)
-        {
-            Console.WriteLine(question);
-
-            while (true)
-            {
-                try
-                {
-                    int userInt = Convert.ToInt32(Console.ReadLine());
-
-                    if (userInt >= min && userInt <= max)
-                    {
-                        return userInt;
-                    }
-                    Console.WriteLine($"Error: Please enter a number between {min} and {max}\n");
-                }
-
-                catch
-                {
-                    Console.WriteLine($"Error: Please enter a number between {min} and {max}\n");
-                }
-            }
-        }
-        static int CheckChicken(string question, int min, int max)
-        {
-            Console.WriteLine(question);
-
-            while (true)
-            {
-                try
-                {
-                    int userInt = Convert.ToInt32(Console.ReadLine());
-
-                    if (userInt >= min && userInt <= max)
-                    {
-                        return userInt;
-                    }
-                    Console.WriteLine($"Error: Please enter a number between {min} and {max}\n");
                 }
 
                 catch
