@@ -28,35 +28,41 @@ namespace FarmFeeding
                 try
                 {
                     int userInt = Convert.ToInt32(Console.ReadLine());
+                    float daily_amount = 500;
 
                     if (userInt >= min && userInt <= max)
                     {
-                        if (chosen_species != "Nothing")
+                        if (chosen_species != "Nothing") 
                         {
                             if (chosen_species == "Sheep")
                             {
                                 chosen_breed = Sheep[userInt - 1];
+                                daily_amount = 500;
                             }
                             else if (chosen_species == "Pig")
                             {
                                 chosen_breed = pig[userInt - 1];
+                                daily_amount = 2750;
                             }
                             else if (chosen_species == "Cow")
                             {
                                 chosen_breed = cow[userInt - 1];
+                                daily_amount = 10886;
                             }
                             else if (chosen_species == "Chicken")
                             {
                                 chosen_breed = chicken[userInt - 1];
+                                daily_amount = 125;
                             }
+                            Console.Clear();
                             Random random = new Random();
                             string ID = "SBL0001#" + random.Next(01, 99);
-                            int daily_amount = 500;
-                            int total_amount = daily_amount * 7;
+                            float total_amount = daily_amount * 7;
                             float cost = (float)Math.Round(total_amount / 61.9, 2);
                             Console.WriteLine($"Species: {chosen_species}\nBreed: {chosen_breed}\nID: {ID}\nDay 1: {daily_amount}g\nDay 2: {daily_amount}g\nDay 3: {daily_amount}g" +
-                                $"\nDay 4: {daily_amount}g\nDay 5: {daily_amount}g\nDay 6: {daily_amount}g\nDay 7: {daily_amount}g\n\nTotal Food Consumed: {total_amount}g\nCost: ${cost}");
-
+                                $"\nDay 4: {daily_amount}g\nDay 5: {daily_amount}g\nDay 6: {daily_amount}g\nDay 7: {daily_amount}g\n\nTotal Food Consumed: {total_amount}g\nCost Per Week: ${cost}" +
+                                $"\n\nTotal Food Consumed per Year: {total_amount*52}g\nCost Per Year: ${cost*52}\n\n");
+                            return userInt;
                         }
                     }
                     else
@@ -124,7 +130,7 @@ namespace FarmFeeding
                 {
                     // convert name to capitalized name
                     name = name[0].ToString().ToUpper() + name.Substring(1);
-
+                    Console.Clear();
                     return name;
                 }
                 Console.WriteLine("Error: You must enter your name!");
@@ -139,7 +145,7 @@ namespace FarmFeeding
 
             // Decide which species is used
 
-            int species = CheckSpecies("Choose a species:\n" +
+            int species = CheckSpecies($"Welcome {name}!\n\nChoose a species:\n" +
                "1. Sheep\n" +
                "2. Pig\n" +
                "3. Cow\n" +
@@ -205,11 +211,25 @@ namespace FarmFeeding
                     Flag = 5;
                 }
             }
-
         }
 
         static void Main()
         {
+            Console.WriteLine(@" _____ ____  ____  _        _____ _____ _____ ____  _  _      _____" + "\n" +
+                              @"/    //  _ \/  __\/ \__/|  /    //  __//  __//  _ \/ \/ \  /|/  __/" + "\n" +
+                              @"|  __\| / \||  \/|| |\/||  |  __\|  \  |  \  | | \|| || |\ ||| |  _" + "\n" +
+                              @"| |   | |-|||    /| |  ||  | |   |  /_ |  /_ | |_/|| || | \||| |_//" + "\n" +
+                              @"\_/   \_/ \|\_/\_\\_/  \|  \_/   \____\\____\\____/\_/\_/  \|\____\" + "\n");
+            Console.WriteLine("____________________________________________________________________________________________________");
+            Console.WriteLine("Farm Feeding is an app that is used to find the amount of money needed to feed your farm animals.\n" +
+                "Select your species out of sheep, pig, cow, and chicken. After selecting your animal, select your breed.\n" +
+                "After selecting your species and breed, watch the Farm Feeding app display the amount of food, and cost needed.\n");
+            Console.WriteLine("____________________________________________________________________________________________________");
+
+            Console.WriteLine("Press Enter to start.");
+            Console.ReadLine();
+            Console.Clear();
+
             while (Flag != 5)
             {
                 FarmFeeding();
