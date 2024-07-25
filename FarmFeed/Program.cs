@@ -32,7 +32,7 @@ namespace FarmFeeding
 
                     if (userInt >= min && userInt <= max)
                     {
-                        if (chosen_species != "Nothing") 
+                        if (chosen_species != "Nothing")
                         {
                             if (chosen_species == "Sheep")
                             {
@@ -54,15 +54,24 @@ namespace FarmFeeding
                                 chosen_breed = chicken[userInt - 1];
                                 daily_amount = 125;
                             }
+
                             Console.Clear();
-                            Random random = new Random();
-                            string ID = "SBL0001#" + random.Next(01, 99);
-                            float total_amount = daily_amount * 7;
-                            float cost = (float)Math.Round(total_amount / 61.9, 2);
-                            Console.WriteLine($"Species: {chosen_species}\nBreed: {chosen_breed}\nID: {ID}\nDay 1: {daily_amount}g\nDay 2: {daily_amount}g\nDay 3: {daily_amount}g" +
-                                $"\nDay 4: {daily_amount}g\nDay 5: {daily_amount}g\nDay 6: {daily_amount}g\nDay 7: {daily_amount}g\n\nTotal Food Consumed: {total_amount}g\nCost Per Week: ${cost}" +
-                                $"\n\nTotal Food Consumed per Year: {total_amount*52}g\nCost Per Year: ${cost*52}\n\n");
-                            return userInt;
+                            // repeat display for food and cost 5 times
+                            for (int i = 0; i < 5; i++)
+                            {
+                                Random random = new Random();
+                                string ID = "SBL0001#" + random.Next(01, 99);
+                                float total_amount = daily_amount * 7;
+                                float cost = (float)Math.Round(total_amount / 61.9, 2);
+                                Console.WriteLine($"Species: {chosen_species}\nBreed: {chosen_breed}\nID: {ID}\nDay 1: {daily_amount}g\nDay 2: {daily_amount}g\nDay 3: {daily_amount}g" +
+                                    $"\nDay 4: {daily_amount}g\nDay 5: {daily_amount}g\nDay 6: {daily_amount}g\nDay 7: {daily_amount}g\n\nTotal Food Consumed: {total_amount}g\nCost Per Week: ${cost}" +
+                                    $"\n\nTotal Food Consumed per Year: {total_amount * 52}g\nCost Per Year: ${cost * 52}\n\n");
+                                return userInt;
+                                
+                            }
+                            
+
+                            
                         }
                     }
                     else
@@ -74,6 +83,7 @@ namespace FarmFeeding
                 {
                     Console.WriteLine($"Error: Please enter a number between {min} and {max}\n");
                 }
+                
             }
         }
         static int CheckSpecies(string question, int min, int max)
@@ -143,74 +153,82 @@ namespace FarmFeeding
 
             string name = CheckName();
 
-            // Decide which species is used
-
-            int species = CheckSpecies($"Welcome {name}!\n\nChoose a species:\n" +
-               "1. Sheep\n" +
-               "2. Pig\n" +
-               "3. Cow\n" +
-               "4. Chicken\n" +
-               "5. Quit\n", 1, 5);
-
-            if (species == 5)
+            // Loop 5 times
+            for (int i = 0; i < 5; i++)
             {
-                Flag = 5;
-            }
-            else if (species == 1)
-            {
-                int sheep = CheckAnimal("Choose your breed of sheep:\n" +
-                "1. Romney\n" +
-                "2. Hampshire\n" +
-                "3. Dorset\n" +
-                "4. Rambouillet\n" +
-                "5. Quit", 1, 5);
 
-                if (sheep == 5)
+                // Decide which species is used
+
+                int species = CheckSpecies($"Welcome {name}!\n\nChoose a species:\n" +
+                   "1. Sheep\n" +
+                   "2. Pig\n" +
+                   "3. Cow\n" +
+                   "4. Chicken\n" +
+                   "5. Quit\n", 1, 5);
+
+                if (species == 5)
                 {
                     Flag = 5;
                 }
-            }
-            else if (species == 2)
-            {
-                int pig = CheckAnimal("Chooose your breed of pig:\n" +
-                "1. Kunekune\n" +
-                "2. Hampshire\n" +
-                "3. Duroc\n" +
-                "4. Berkshire\n" +
-                "5. Quit", 1, 5);
+                else if (species == 1)
+                {
+                    int sheep = CheckAnimal("Choose your breed of sheep:\n" +
+                    "1. Romney\n" +
+                    "2. Hampshire\n" +
+                    "3. Dorset\n" +
+                    "4. Rambouillet\n" +
+                    "5. Quit", 1, 5);
 
-                if (pig == 5)
-                {
-                    Flag = 5;
+                    if (sheep == 5)
+                    {
+                        Flag = 5;
+                    }
                 }
-            }
-            else if (species == 3)
-            {
-                int cow = CheckAnimal("Choose your breed of cow:\n" +
-                "1. Holstein Friedsian\n" +
-                "2. Hereford\n" +
-                "3. Simmental\n" +
-                "4. Limosusin\n" +
-                "5. Quit", 1, 5);
+                else if (species == 2)
+                {
+                    int pig = CheckAnimal("Chooose your breed of pig:\n" +
+                    "1. Kunekune\n" +
+                    "2. Hampshire\n" +
+                    "3. Duroc\n" +
+                    "4. Berkshire\n" +
+                    "5. Quit", 1, 5);
 
-                if (cow == 5)
-                {
-                    Flag = 5;
+                    if (pig == 5)
+                    {
+                        Flag = 5;
+                    }
                 }
-            }
-            else if (species == 4)
-            {
-                int chicken = CheckAnimal("Choose your breed of chicken:\n" +
-                "1. Silkie\n" +
-                "2. Brahma\n" +
-                "3. Ayam\n" +
-                "4. ISA Brown\n" +
-                "5. Quit\n", 1, 5);
-                if (chicken == 5)
+                else if (species == 3)
                 {
-                    Flag = 5;
+                    int cow = CheckAnimal("Choose your breed of cow:\n" +
+                    "1. Holstein Friedsian\n" +
+                    "2. Hereford\n" +
+                    "3. Simmental\n" +
+                    "4. Limosusin\n" +
+                    "5. Quit", 1, 5);
+
+                    if (cow == 5)
+                    {
+                        Flag = 5;
+                    }
                 }
+                else if (species == 4)
+                {
+                    int chicken = CheckAnimal("Choose your breed of chicken:\n" +
+                    "1. Silkie\n" +
+                    "2. Brahma\n" +
+                    "3. Ayam\n" +
+                    "4. ISA Brown\n" +
+                    "5. Quit\n", 1, 5);
+
+                    if (chicken == 5)
+                    {
+                        Flag = 5;
+                    }
+                }
+                
             }
+            
         }
 
         static void Main()
